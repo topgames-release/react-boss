@@ -1,0 +1,91 @@
+
+.job {
+  padding: 18px 20px 17px;
+  margin-bottom: 6px;
+  height: auto;
+  background: #fff;
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 7px;
+    .title-text {
+      font-size: 18px;
+      font-weight: 500;
+      color: #333;
+      line-height: 25px;
+      padding-right: 20px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      word-break: break-all;
+    }
+    .salary {
+      font-size: 18px;
+      color: #f67b4e;
+      line-height: 22px;
+      flex-shrink: 0;
+      font-family: kanzhun-Regular,kanzhun;
+    }
+  }
+  .name {
+    display: flex;
+    margin-bottom: 9px;
+    & > span {
+      font-size: 14px;
+      font-weight: 300;
+      color: #666;
+      line-height: 20px;
+      margin-right: 10px;
+    }
+  }
+  .labels {
+    display: flex;
+    margin-bottom: 11px;
+    flex-wrap: wrap;
+    & > span {
+      display: inline-block;
+      padding: 3px 7px;
+      font-size: 12px;
+      color: #666;
+      line-height: 17px;
+      background: #f5f5f5;
+      border-radius: 3px;
+      margin-right: 6px;
+      margin-bottom: 5px;
+    }
+  }
+  .recruiter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    img {
+      margin: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background-color: #40e0d0;
+      margin-right: 8px;
+    }
+    .user-wrap {
+      display: flex;
+      align-items: center;
+      .name {
+        font-size: 12px;
+        color: #333;
+        line-height: 17px;
+        margin-bottom: 0;
+      }
+    }
+  }
+  img {
+    width: 59px;
+    height: 59px;
+    display: block;
+    border: none;
+    margin-left: 18px;
+    margin-top: 16px;
+    float: left;
+    border-radius: 5px;
+  }
+}

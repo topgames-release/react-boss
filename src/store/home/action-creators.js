@@ -1,12 +1,45 @@
 import * as actionTypes from './action-types';
-import requester from "../../utils/requester";
+import {getJobs} from "../../api/job";
 
 const actionCreators = {
+  [actionTypes.CHANGE_TOP_TIP_TAB](topTipTab) {
+    return {
+      type: actionTypes.CHANGE_TOP_TIP_TAB,
+      topTipTab
+    }
+  },
+  [actionTypes.CHANGE_TOP_TIP_DIALOG](dialogType) {
+    return {
+      type: actionTypes.CHANGE_TOP_TIP_DIALOG,
+      dialogType
+    }
+  },
+  [actionTypes.CHANGE_TOP_TIP_ADDRESS](address) {
+    return {
+      type: actionTypes.CHANGE_TOP_TIP_ADDRESS,
+      address
+    }
+  },
+  [actionTypes.CHANGE_TOP_TIP_FILTERS](filters) {
+    return {
+      type: actionTypes.CHANGE_TOP_TIP_FILTERS,
+      filters
+    }
+  },
+  [actionTypes.CHANGE_TOP_TIP_KEYWORDS](keywords) {
+    return {
+      type: actionTypes.CHANGE_TOP_TIP_FILTERS,
+      keywords
+    }
+  },
   [actionTypes.GET_JOBS_DATA]() {
     return (dispatch) => {
-      requester.get("/api/topic_list.json").then((res) => {
+      getJobs().then((res) => {
         const data = res.data;
-        dispatch(actionTypes.GET_JOBS_DATA, data.data)
+        dispatch({
+          type: actionTypes.GET_JOBS_DATA,
+          jobs: data.data.items
+        })
       }).catch((error) => {
         console.error(error);
       })

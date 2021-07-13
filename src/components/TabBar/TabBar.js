@@ -17,11 +17,6 @@ class TabBar extends Component{
             </Link>
           </div>
           <div className='tab-bar-item'>
-            <Link to='/had' onClick={() => toggleTab('had')}>
-              <span className={currentTab === 'had' ? 'active' : ''}><i className="iconfont">&#xe618;</i>有了</span>
-            </Link>
-          </div>
-          <div className='tab-bar-item'>
             <Link to='/message' onClick={() => toggleTab('message')}>
               <span className={currentTab === 'message' ? 'active' : ''}><i className="iconfont">&#xe618;</i>消息</span>
             </Link>

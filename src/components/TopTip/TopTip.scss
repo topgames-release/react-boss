@@ -1,0 +1,49 @@
+
+.top-tip-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1001;
+  background-color: #ffffff;
+  .top-tip {
+    display: flex;
+    justify-content: space-between;
+    height: 32px;
+    line-height: 32px;
+    padding-left: 20px;
+    padding-right: 20px;
+    .tabs {
+      display: inline-block;
+      font-size: 14px;
+      color: #666;
+      span {
+        margin-right: 16px;
+        &:last-child {
+          margin-right: 0;
+        }
+        &.active {
+          color: black;
+        }
+      }
+    }
+    .switches {
+      display: inline-block;
+      font-size: 14px;
+      color: #666;
+      span {
+        margin-right: 16px;
+        font-size: 12px;
+        padding: 3px 7px;
+        background: #f5f5f5;
+        border-radius: 3px;
+        &:last-child {
+          margin-right: 0;
+        }
+        &.active {
+          color: #f67b4e;
+        }
+      }
+    }
+  }
+}
