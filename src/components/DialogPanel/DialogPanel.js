@@ -1,6 +1,9 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 import {connect} from "react-redux";
-import Filter from "../Filter/Filter";
+import EducationFilter from "../EducationFilter/EducationFilter";
+import SalaryFilter from "../SalaryFilter/SalaryFilter";
+import ExperienceFilter from "../ExperienceFilter/ExperienceFilter";
+import IndustryFilter from "../IndustryFilter/IndustryFilter";
 import {actionCreators, actionTypes} from "../../store/home";
 
 import './DialogPanel.scss';
@@ -28,7 +31,12 @@ class DialogPanel extends Component {
 
   renderFilters = () => {
     return (
-      <Filter />
+      <Fragment>
+        <EducationFilter />
+        <SalaryFilter />
+        <ExperienceFilter />
+        <IndustryFilter />
+      </Fragment>
     )
   }
 

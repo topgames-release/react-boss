@@ -1,4 +1,59 @@
 
 .filter {
-
+  .filter-header {
+    display: flex;
+    justify-content: space-between;
+    height: 20px;
+    line-height: 20px;
+    margin-bottom: 12px;
+    .left-container {
+      display: flex;
+      .title {
+        font-size: 16px;
+        font-weight: bold;
+        margin-right: 6px;
+      }
+      .single-selector {
+        font-size: 12px;
+      }
+    }
+    .right-container {
+      display: flex;
+      align-items: center;
+      .nums {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        border-radius: 8px;
+        text-align: center;
+        font-size: 8px;
+        color: #ffffff;
+        background-color: #40e0d0;
+        margin-right: 6px;
+      }
+    }
+  }
+  .filter-labels {
+    display: flex;
+    margin-bottom: 11px;
+    flex-wrap: wrap;
+    & > span {
+      display: inline-block;
+      width: calc((100% - 12px)/3);
+      height: 36px;
+      line-height: 36px;
+      font-size: 12px;
+      color: #666;
+      background: #f5f5f5;
+      text-align: center;
+      border-radius: 3px;
+      margin-right: 6px;
+      margin-bottom: 8px;
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+      &.active {
+      }
+    }
+  }
 }
