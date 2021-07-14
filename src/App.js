@@ -10,7 +10,6 @@ import DialogPanel from "./components/DialogPanel/DialogPanel";
 class App extends Component{
   render() {
     const {dialogType} = this.props;
-    console.log('dialogType', dialogType);
     return (
       <BrowserRouter>
         <React.Fragment>
