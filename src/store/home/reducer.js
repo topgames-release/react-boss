@@ -12,8 +12,8 @@ const defaultState = {
 
   dialogType: '',
   address: '全国',
-  filters: [],
-  keywords: [],
+  filters: {},
+  keywords: {},
 
   jobs: []
 }

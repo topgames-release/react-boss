@@ -10,19 +10,44 @@ import './DialogPanel.scss';
 
 class DialogPanel extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      filters: {},
+      keywords: {}
+    }
+  }
+
   clear = () => {
     const {dialogType, clearDialogType, changeFilters, changeKeywords} = this.props;
     if (dialogType === 'filters') {
-      changeFilters([]);
+      changeFilters({});
       clearDialogType();
     } else if (dialogType === 'keywords') {
-      changeKeywords([]);
+      changeKeywords({});
       clearDialogType();
     }
   }
 
   confirm = () => {
-    console.log('confirm')
+    const {filters, keywords} = this.state;
+    const {filters: pFilters} = this.props;
+    const {dialogType, clearDialogType, changeFilters, changeKeywords} = this.props;
+    if (dialogType === 'filters') {
+      changeFilters({...pFilters, ...filters});
+      clearDialogType();
+    } else if (dialogType === 'keywords') {
+      changeKeywords(keywords);
+      clearDialogType();
+    }
+  }
+
+  selectFilters = (type, selectors) => {
+    const {filters} = this.state;
+    filters[type] = selectors;
+    this.setState({
+      filters
+    })
   }
 
   renderAddress = () => {
@@ -30,12 +55,13 @@ class DialogPanel extends Component {
   }
 
   renderFilters = () => {
+    const {filters} = this.props;
     return (
       <Fragment>
-        <EducationFilter />
-        <SalaryFilter />
-        <ExperienceFilter />
-        <IndustryFilter />
+        <EducationFilter defaultValue={filters.education || []} selectLabels={this.selectFilters} />
+        <SalaryFilter defaultValue={filters.salary || []} selectLabels={this.selectFilters} />
+        <ExperienceFilter defaultValue={filters.experience || []} selectLabels={this.selectFilters} />
+        <IndustryFilter defaultValue={filters.industry || []} selectLabels={this.selectFilters} />
       </Fragment>
     )
   }
@@ -67,6 +93,7 @@ class DialogPanel extends Component {
 const mapState = (state) => ({
   address: state.home.address,
   dialogType: state.home.dialogType,
+  filters: state.home.filters,
 });
 
 const mapDispatch = (dispatch) => ({

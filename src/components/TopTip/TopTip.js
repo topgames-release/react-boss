@@ -5,8 +5,16 @@ import {actionCreators, actionTypes} from "../../store/home";
 import './TopTip.scss';
 
 class TopTip extends Component {
+
+  getFilterCount = () => {
+    const {filters} = this.props;
+    if (!filters || Object.keys(filters).length === 0) return 0;
+    return Object.keys(filters).reduce((prev, key) => prev + filters[key].length, 0);
+  }
+
   render() {
-    const {topTipTab, changeTopTipTab, address, changeDialogType, filters, keywords} = this.props;
+    const {topTipTab, changeTopTipTab, address, changeDialogType, keywords} = this.props;
+    const filterCount = this.getFilterCount();
     return (<div className='top-tip-wrapper'>
       <div className='top-tip'>
         <div className='tabs'>
@@ -16,7 +24,7 @@ class TopTip extends Component {
         </div>
         <div className='switches'>
           <span className={address ? 'active' : ''} onClick={() => changeDialogType('address')}>{address}</span>
-          <span className={filters && filters.length > 0 ? 'active' : ''} onClick={() => changeDialogType('filters')}>筛选{filters && filters.length > 0 ? `~${filters.length}` : ''}</span>
+          <span className={filterCount > 0 ? 'active' : ''} onClick={() => changeDialogType('filters')}>筛选{filterCount > 0 ? `~${filterCount}` : ''}</span>
           <span className={keywords && keywords.length > 0 ? 'active' : ''} onClick={() => changeDialogType('keywords')}>关键词{keywords && keywords.length > 0 ? `~${keywords.length}` : ''}</span>
         </div>
       </div>

@@ -3,14 +3,49 @@ import React, {Component} from "react";
 import './Filter.scss';
 
 export default class Filter extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-
+      selectors: []
     }
   }
+
+  componentDidMount() {
+    const {defaultValue, items} = this.props;
+    if (defaultValue && items) {
+      const selectors = defaultValue.filter(selector => items.includes(selector));
+      this.setState({
+        selectors
+      })
+    }
+  }
+
+  clickLabel = (item) => {
+    let {selectors} = this.state;
+    const {type, singleSelector, selectLabels} = this.props;
+    if (item !== '不限') {
+      if (selectors.includes(item)) {
+        selectors = selectors.filter(selector => selector !== item);
+      } else {
+        singleSelector ? selectors = [item] : selectors.push(item);
+      }
+      selectLabels && selectLabels(type, selectors);
+      this.setState({
+        selectors
+      })
+    }
+  }
+
+  renderLabelStyle = (item) => {
+    const {selectors} = this.state;
+    if (selectors && selectors.length === 0 && item === '不限') return 'active';
+    if (selectors && selectors.includes(item)) return 'active';
+    return '';
+  }
+
   render() {
     const {title, singleSelector, items} = this.props;
+    const {selectors} = this.state;
     return (<div className='filter'>
       <div className='filter-header'>
         <div className='left-container'>
@@ -18,12 +53,21 @@ export default class Filter extends Component {
           {singleSelector && <div className='single-selector'>(单选)</div>}
         </div>
         <div className='right-container'>
-          <span className='nums'>1</span>
-          {items && items.length > 9 && <span className='action'><i className="icon-thumb_down"></i></span>}
+          {selectors && selectors.length > 0 && <span className='nums'>{selectors.length}</span>}
+          {items && items.length > 9 && <span className='action'><i className="icon-thumb_down" /></span>}
         </div>
       </div>
       <div className='filter-labels'>
-        {items && items.slice(0, 9).map(item => <span>{item}</span>)}
+        {items && items.slice(0, 9).map(item => {
+          const labelStyles = this.renderLabelStyle(item);
+          return (
+            <span
+              className={labelStyles}
+              onClick={() => this.clickLabel(item)}>
+              {item}
+            </span>
+          )
+        })}
       </div>
     </div>)
   }
