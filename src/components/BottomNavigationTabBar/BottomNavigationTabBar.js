@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
-import './TabBar.scss';
+import './BottomNavigationTabBar.scss';
 
 import {actionCreators, actionTypes} from '../../store/tab-bar';
 
-class TabBar extends Component{
+class BottomNavigationTabBar extends Component{
   render() {
     const {currentTab, toggleTab} = this.props;
     return (
@@ -42,4 +42,4 @@ const mapDispatch = (dispatch) => ({
   }
 });
 
-export default connect(mapState, mapDispatch)(TabBar);
+export default connect(mapState, mapDispatch)(BottomNavigationTabBar);

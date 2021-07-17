@@ -1,3 +1,4 @@
+@import '../../assets/style/var';
 @import '../../assets/style/mixin';
 
 .tab-bar-wrapper {
@@ -21,7 +22,7 @@
         color: rgb(77, 85, 93);
         & > span {
           &.active {
-            color: rgb(0, 160, 220);
+            color: $--color-primary;
           }
         }
       }
