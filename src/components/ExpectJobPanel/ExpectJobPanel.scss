@@ -58,6 +58,7 @@
   .expect-job-panel-status-wrapper {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-bottom: 1px solid #f5f5f5;
     margin-top: 28px;
     padding-bottom: 24px;
@@ -65,8 +66,15 @@
       font-size: 18px;
     }
     .expect-job-panel-status-value {
+      display: flex;
       font-size: 14px;
       color: #999999;
+      & > span {
+        display: inline-block;
+        &:first-child {
+          margin-right: 6px;
+        }
+      }
     }
   }
 }

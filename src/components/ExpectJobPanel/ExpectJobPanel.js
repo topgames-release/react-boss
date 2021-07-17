@@ -29,7 +29,10 @@ class ExpectJobPanel extends Component {
       </div>
       <div className="expect-job-panel-status-wrapper">
         <div className="expect-job-panel-status-title">求职状态</div>
-        <div className="expect-job-panel-status-value">在职-考虑机会</div>
+        <div className="expect-job-panel-status-value">
+          <span>在职-考虑机会</span>
+          <span><i className="icon-arrow_lift" /></span>
+        </div>
       </div>
     </div>)
   }
