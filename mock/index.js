@@ -2,9 +2,13 @@ const Mock = require('mockjs')
 const { param2Obj } = require('./utils')
 
 const job = require('./job')
+const filter = require('./filter')
+const keyword = require('./keyword')
 
 const mocks = [
   ...job,
+  ...filter,
+  ...keyword,
 ]
 
 // for front mock

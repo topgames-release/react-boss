@@ -12,9 +12,16 @@ class TopTip extends Component {
     return Object.keys(filters).reduce((prev, key) => prev + filters[key].length, 0);
   }
 
+  getKeywordCount = () => {
+    const {keywords} = this.props;
+    if (!keywords || Object.keys(keywords).length === 0) return 0;
+    return Object.keys(keywords).reduce((prev, key) => prev + keywords[key].length, 0);
+  }
+
   render() {
-    const {topTipTab, changeTopTipTab, address, changeDialogType, keywords} = this.props;
+    const {topTipTab, changeTopTipTab, address, changeDialogType} = this.props;
     const filterCount = this.getFilterCount();
+    const keywordCount = this.getKeywordCount();
     return (<div className='top-tip-wrapper'>
       <div className='top-tip'>
         <div className='tabs'>
@@ -25,7 +32,7 @@ class TopTip extends Component {
         <div className='switches'>
           <span className={address ? 'active' : ''} onClick={() => changeDialogType('address')}>{address}</span>
           <span className={filterCount > 0 ? 'active' : ''} onClick={() => changeDialogType('filters')}>筛选{filterCount > 0 ? `~${filterCount}` : ''}</span>
-          <span className={keywords && keywords.length > 0 ? 'active' : ''} onClick={() => changeDialogType('keywords')}>关键词{keywords && keywords.length > 0 ? `~${keywords.length}` : ''}</span>
+          <span className={keywordCount > 0 ? 'active' : ''} onClick={() => changeDialogType('keywords')}>关键词{keywordCount > 0 ? `~${keywordCount}` : ''}</span>
         </div>
       </div>
     </div>)

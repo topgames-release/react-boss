@@ -1,11 +1,10 @@
 import React, {Component, Fragment} from "react";
 import {connect} from "react-redux";
-import EducationFilter from "../EducationFilter/EducationFilter";
-import SalaryFilter from "../SalaryFilter/SalaryFilter";
-import ExperienceFilter from "../ExperienceFilter/ExperienceFilter";
-import IndustryFilter from "../IndustryFilter/IndustryFilter";
-import FinancingFilter from "../FinancingFilter/FinancingFilter";
+import Filter from "../Filter/Filter";
 import {actionCreators, actionTypes} from "../../store/home";
+
+import {getFilters} from "../../api/filter";
+import {getKeywords} from "../../api/keyword";
 
 import './DialogPanel.scss';
 
@@ -14,8 +13,33 @@ class DialogPanel extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      filtersData: [],
+      keywordsData: [],
       filters: {},
       keywords: {}
+    }
+  }
+
+  componentDidMount() {
+    const {dialogType} = this.props;
+    if (dialogType === 'filters') {
+      getFilters().then((res) => {
+        const {code} = res.data;
+        if (code === 20000) {
+          this.setState({
+            filtersData: res.data.data
+          })
+        }
+      }).catch(console.error)
+    } else if (dialogType === 'keywords') {
+      getKeywords().then((res) => {
+        const {code} = res.data;
+        if (code === 20000) {
+          this.setState({
+            keywordsData: res.data.data
+          })
+        }
+      }).catch(console.error)
     }
   }
 
@@ -32,13 +56,13 @@ class DialogPanel extends Component {
 
   confirm = () => {
     const {filters, keywords} = this.state;
-    const {filters: pFilters} = this.props;
+    const {filters: pFilters, keywords: pKeywords} = this.props;
     const {dialogType, clearDialogType, changeFilters, changeKeywords} = this.props;
     if (dialogType === 'filters') {
       changeFilters({...pFilters, ...filters});
       clearDialogType();
     } else if (dialogType === 'keywords') {
-      changeKeywords(keywords);
+      changeKeywords({...pKeywords, ...keywords});
       clearDialogType();
     }
   }
@@ -51,25 +75,48 @@ class DialogPanel extends Component {
     })
   }
 
+  selectKeywords = (type, selectors) => {
+    const {keywords} = this.state;
+    keywords[type] = selectors;
+    this.setState({
+      keywords
+    })
+  }
+
   renderAddress = () => {
     return <div>Address</div>
   }
 
   renderFilters = () => {
     const {filters} = this.props;
+    const {filtersData} = this.state;
     return (
       <Fragment>
-        <EducationFilter defaultValue={filters.education || []} selectLabels={this.selectFilters} />
-        <SalaryFilter defaultValue={filters.salary || []} selectLabels={this.selectFilters} />
-        <ExperienceFilter defaultValue={filters.experience || []} selectLabels={this.selectFilters} />
-        <IndustryFilter defaultValue={filters.industry || []} selectLabels={this.selectFilters} />
-        <FinancingFilter defaultValue={filters.financing || []} selectLabels={this.selectFilters} />
+        {filtersData && filtersData.map(filter => {
+          return <Filter
+            {...filter}
+            defaultValue={filters[filter.type] || []}
+            selectLabels={this.selectFilters}
+          />
+        })}
       </Fragment>
     )
   }
 
   renderKeywords = () => {
-    return <div>Keywords</div>
+    const {keywords} = this.props;
+    const {keywordsData} = this.state;
+    return (
+      <Fragment>
+        {keywordsData && keywordsData.map(keyword => {
+          return <Filter
+            {...keyword}
+            defaultValue={keywords[keyword.type] || []}
+            selectLabels={this.selectKeywords}
+          />
+        })}
+      </Fragment>
+    )
   }
 
   render() {
@@ -96,6 +143,7 @@ const mapState = (state) => ({
   address: state.home.address,
   dialogType: state.home.dialogType,
   filters: state.home.filters,
+  keywords: state.home.keywords,
 });
 
 const mapDispatch = (dispatch) => ({

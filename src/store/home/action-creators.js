@@ -28,7 +28,7 @@ const actionCreators = {
   },
   [actionTypes.CHANGE_TOP_TIP_KEYWORDS](keywords) {
     return {
-      type: actionTypes.CHANGE_TOP_TIP_FILTERS,
+      type: actionTypes.CHANGE_TOP_TIP_KEYWORDS,
       keywords
     }
   },

@@ -16,7 +16,6 @@ class Home extends Component {
     const { topTipTab: prevTopTipTab } = prevProps;
     const { topTipTab, getJobs } = this.props;
     if (topTipTab !== prevTopTipTab) {
-      console.log('topTipTab', topTipTab);
       getJobs();
     }
   }
@@ -35,6 +34,9 @@ class Home extends Component {
 
 const mapState = (state) => ({
   topTipTab: state.home.topTipTab,
+  address: state.home.address,
+  filters: state.home.filters,
+  keywords: state.home.keywords,
   jobs: state.home.jobs,
 });
 
