@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux';
 import {actionTypes, actionCreators} from '../../store/home'
+import TopTabBar from "../../components/TopTabBar/TopTabBar";
 import TopTip from "../../components/TopTip/TopTip";
 import Job from "../../components/Job/Job";
 
@@ -24,6 +25,7 @@ class Home extends Component {
     const { jobs } = this.props;
     if (!jobs) return null;
     return <div className='home'>
+      <TopTabBar/>
       <TopTip/>
       <div className='home-jobs'>
         {jobs.map(job => <Job {...job} />)}
