@@ -1,0 +1,38 @@
+@import "../../../assets/style/var";
+
+.expect-job-item-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  .expect-job-item-left-wrapper {
+    .expect-job-item-title {
+      font-size: 18px;
+      color: #333333;
+      & > span:first-child {
+        margin-right: 6px;
+      }
+    }
+    .expect-job-item-subtitle {
+      font-size: 14px;
+      margin-top: 8px;
+      color: #999999;
+      & > span:first-child {
+        margin-right: 6px;
+      }
+    }
+  }
+  .expect-job-item-right-wrapper {
+    & > span {
+      font-size: 12px;
+      color: #999999;
+      &:first-child {
+        color: $--color-primary;
+        background-color: rgba(64, 224, 208, 0.3);
+        padding: 0 6px;
+        margin-right: 8px;
+        border-radius: 3px;
+      }
+    }
+  }
+}
