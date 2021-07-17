@@ -6,7 +6,8 @@ export default class Filter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectors: []
+      selectors: [],
+      showMore: false
     }
   }
 
@@ -43,9 +44,16 @@ export default class Filter extends Component {
     return '';
   }
 
+  toggleMoreLabels = () => {
+    const {showMore} = this.state;
+    this.setState({
+      showMore: !showMore,
+    });
+  }
+
   render() {
     const {title, singleSelector, items} = this.props;
-    const {selectors} = this.state;
+    const {selectors, showMore} = this.state;
     return (<div className='filter'>
       <div className='filter-header'>
         <div className='left-container'>
@@ -54,11 +62,21 @@ export default class Filter extends Component {
         </div>
         <div className='right-container'>
           {selectors && selectors.length > 0 && <span className='nums'>{selectors.length}</span>}
-          {items && items.length > 9 && <span className='action'><i className="icon-thumb_down" /></span>}
+          {items && items.length > 9 && <span className='action' onClick={this.toggleMoreLabels}>{showMore ? <i className="icon-thumb_up" /> : <i className="icon-thumb_down" /> }</span>}
         </div>
       </div>
       <div className='filter-labels'>
         {items && items.slice(0, 9).map(item => {
+          const labelStyles = this.renderLabelStyle(item);
+          return (
+            <span
+              className={labelStyles}
+              onClick={() => this.clickLabel(item)}>
+              {item}
+            </span>
+          )
+        })}
+        {showMore && items && items.slice(9, items.length).map(item => {
           const labelStyles = this.renderLabelStyle(item);
           return (
             <span

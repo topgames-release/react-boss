@@ -4,6 +4,7 @@ import EducationFilter from "../EducationFilter/EducationFilter";
 import SalaryFilter from "../SalaryFilter/SalaryFilter";
 import ExperienceFilter from "../ExperienceFilter/ExperienceFilter";
 import IndustryFilter from "../IndustryFilter/IndustryFilter";
+import FinancingFilter from "../FinancingFilter/FinancingFilter";
 import {actionCreators, actionTypes} from "../../store/home";
 
 import './DialogPanel.scss';
@@ -62,6 +63,7 @@ class DialogPanel extends Component {
         <SalaryFilter defaultValue={filters.salary || []} selectLabels={this.selectFilters} />
         <ExperienceFilter defaultValue={filters.experience || []} selectLabels={this.selectFilters} />
         <IndustryFilter defaultValue={filters.industry || []} selectLabels={this.selectFilters} />
+        <FinancingFilter defaultValue={filters.financing || []} selectLabels={this.selectFilters} />
       </Fragment>
     )
   }
