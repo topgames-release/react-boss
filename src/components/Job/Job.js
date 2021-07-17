@@ -11,7 +11,7 @@ export default class Job extends Component {
       </div>
       <div className="name">
         <span className="company">青岛商至信集团</span>
-        <span className="workplace">青岛</span>
+        <span className="financing">未融资</span>
         <span className="people">100-500人</span>
       </div>
       <div className="labels">
@@ -27,6 +27,10 @@ export default class Job extends Component {
             src="https://img.bosszhipin.com/beijin/upload/tmp/20201112/824ad8444af6e28022bf0b588f90b5eab53c9c0ad3006adb7af596ef463fee2a_s.jpg?x-oss-process=image/resize,w_100,limit_0"
             alt="" />
             <div className="name">杨先生·HRBP</div>
+        </div>
+        <div className="workspace-wrap">
+          <div className="workspace">青岛市 黄岛区</div>
+          <i className="icon-close" />
         </div>
       </div>
     </div>)
