@@ -1,7 +1,35 @@
 import * as actionTypes from './action-types';
-import {getJobs} from "../../api/job";
+import {getExpectJobs, getJobs} from "../../api/job";
 
 const actionCreators = {
+  [actionTypes.GET_EXPECT_JOBS]() {
+    return (dispatch) => {
+      getExpectJobs().then((res) => {
+        const data = res.data;
+        dispatch({
+          type: actionTypes.GET_EXPECT_JOBS,
+          expectJobs: data.data
+        })
+      }).catch((error) => {
+        console.error(error);
+      })
+    }
+  },
+  [actionTypes.CHANGE_SELECTED_EXPECT_JOB_INDEX](selectedExpectJobIndex) {
+    return {
+      type: actionTypes.CHANGE_SELECTED_EXPECT_JOB_INDEX,
+      selectedExpectJobIndex
+    }
+  },
+  [actionTypes.SWITCH_EXPECT_JOB_PANEL]() {
+    return (dispatch, getState) => {
+      const state = getState();
+      dispatch({
+        type: actionTypes.SWITCH_EXPECT_JOB_PANEL,
+        showExpectJobPanel: !state.home.showExpectJobPanel
+      })
+    }
+  },
   [actionTypes.CHANGE_TOP_TIP_TAB](topTipTab) {
     return {
       type: actionTypes.CHANGE_TOP_TIP_TAB,

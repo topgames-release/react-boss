@@ -4,10 +4,14 @@ import {
   CHANGE_TOP_TIP_ADDRESS,
   CHANGE_TOP_TIP_FILTERS,
   CHANGE_TOP_TIP_KEYWORDS,
-  CHANGE_TOP_TIP_DIALOG
+  CHANGE_TOP_TIP_DIALOG, GET_EXPECT_JOBS, CHANGE_SELECTED_EXPECT_JOB_INDEX, SWITCH_EXPECT_JOB_PANEL
 } from './action-types'
 
 const defaultState = {
+  expectJobs: [],
+  selectedExpectJobIndex: 0,
+  showExpectJobPanel: false,
+
   topTipTab: 'recommend',
 
   dialogType: '',
@@ -20,6 +24,21 @@ const defaultState = {
 
 const homeReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case GET_EXPECT_JOBS:
+      return {
+        ...state,
+        expectJobs: action.expectJobs
+      }
+    case CHANGE_SELECTED_EXPECT_JOB_INDEX:
+      return {
+        ...state,
+        selectedExpectJobIndex: action.selectedExpectJobIndex
+      }
+    case SWITCH_EXPECT_JOB_PANEL:
+      return {
+        ...state,
+        showExpectJobPanel: action.showExpectJobPanel
+      }
     case CHANGE_TOP_TIP_TAB:
       return {
         ...state,

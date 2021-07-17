@@ -1,4 +1,5 @@
 const Mock = require('mockjs')
+const {EXPECT_JOBS} = require('./data/data')
 
 const List = []
 const count = 100
@@ -53,6 +54,17 @@ module.exports = [
           total: mockList.length,
           items: pageList
         }
+      }
+    }
+  },
+
+  {
+    url: '/job/expect',
+    type: 'get',
+    response: config => {
+      return {
+        code: 20000,
+        data: EXPECT_JOBS
       }
     }
   },

@@ -9,13 +9,16 @@ import './Home.scss';
 
 class Home extends Component {
   componentDidMount() {
-    const { getJobs } = this.props;
+    const { getExpectJobs, getJobs } = this.props;
+    getExpectJobs();
+    // todo
     getJobs();
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     const { topTipTab: prevTopTipTab } = prevProps;
     const { topTipTab, getJobs } = this.props;
+    // todo
     if (topTipTab !== prevTopTipTab) {
       getJobs();
     }
@@ -28,13 +31,15 @@ class Home extends Component {
       <TopTabBar/>
       <TopTip/>
       <div className='home-jobs'>
-        {jobs.map(job => <Job {...job} />)}
+        {jobs.map(job => <Job key={job.id} {...job} />)}
       </div>
     </div>
   }
 }
 
 const mapState = (state) => ({
+  expectJobs: state.home.expectJobs,
+  selectedExpectJobIndex: state.home.selectedExpectJobIndex,
   topTipTab: state.home.topTipTab,
   address: state.home.address,
   filters: state.home.filters,
@@ -43,6 +48,9 @@ const mapState = (state) => ({
 });
 
 const mapDispatch = (dispatch) => ({
+  getExpectJobs() {
+    dispatch(actionCreators[actionTypes.GET_EXPECT_JOBS]());
+  },
   getJobs() {
     dispatch(actionCreators[actionTypes.GET_JOBS_DATA]());
   },

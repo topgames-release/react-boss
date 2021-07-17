@@ -6,10 +6,11 @@ import Home from './pages/Home/Home'
 import Message from './pages/Message/Message'
 import Mine from './pages/Mine/Mine'
 import DialogPanel from "./components/DialogPanel/DialogPanel";
+import ExpectJobPanel from "./components/ExpectJobPanel/ExpectJobPanel";
 
 class App extends Component{
   render() {
-    const {dialogType} = this.props;
+    const {showExpectJobPanel, dialogType} = this.props;
     return (
       <BrowserRouter>
         <React.Fragment>
@@ -18,6 +19,7 @@ class App extends Component{
           <Route path='/mine' exact component={Mine} />
           <BottomNavigationTabBar />
           {dialogType && <DialogPanel />}
+          {showExpectJobPanel && <ExpectJobPanel />}
         </React.Fragment>
       </BrowserRouter>
     );
@@ -25,6 +27,7 @@ class App extends Component{
 }
 
 const mapState = (state) => ({
+  showExpectJobPanel: state.home.showExpectJobPanel,
   dialogType: state.home.dialogType,
 });
 

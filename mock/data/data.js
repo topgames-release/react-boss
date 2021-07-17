@@ -1,3 +1,20 @@
+const EXPECT_JOBS = [
+  {
+    jobType: "全职",
+    workSpace: "青岛",
+    job: "web前端",
+    industry: "不限",
+    salary: "20-25K"
+  },
+  {
+    jobType: "全职",
+    workSpace: "青岛",
+    job: "Java",
+    industry: "不限",
+    salary: "18-23K"
+  }
+]
+
 const FILTERS = [
   {
     title: "学历要求",
@@ -66,6 +83,7 @@ const KEYWORDS = [
 ]
 
 module.exports = {
+  EXPECT_JOBS,
   FILTERS,
   KEYWORDS,
 }
