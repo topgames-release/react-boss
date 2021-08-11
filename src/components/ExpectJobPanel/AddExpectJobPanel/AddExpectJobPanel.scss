@@ -1,0 +1,63 @@
+@import "../../../assets/style/var";
+
+.add-expect-job-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1003;
+  width: calc(100% - 40px);
+  height: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #ffffff;
+  .add-expect-job-panel-header {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    line-height: 48px;
+  }
+  .add-expect-job-panel-title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+    .add-expect-job-panel-title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .add-expect-job-panel-tips {
+      display: flex;
+      align-items: center;
+      & > span {
+        &:first-child {
+          color: $--color-primary;
+          margin-right: 1px;
+        }
+        &:last-child {
+          margin-left: 1px;
+        }
+      }
+    }
+  }
+  .add-expect-job-panel-subtitle-wrapper {
+    font-size: 14px;
+    color: #999999;
+    margin-top: 14px;
+  }
+  .add-expect-job-panel-btn-wrapper {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 48px;
+    width: calc(100% - 40px);
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: 48px;
+    margin-bottom: 2px;
+    text-align: center;
+    .add-expect-job-panel-save-btn {
+      color: #ffffff;
+      background: $--color-primary;
+      border-radius: 6px;
+    }
+  }
+}

@@ -7,7 +7,7 @@ import './ExpectJobPanel.scss';
 
 class ExpectJobPanel extends Component {
   render() {
-    const {expectJobs, switchExpectJobPanel} = this.props;
+    const {expectJobs, switchExpectJobPanel, switchAddExpectJobPanel} = this.props;
     return (<div className="expect-job-panel">
       <div className="expect-job-panel-header" onClick={switchExpectJobPanel}>
         <i className="icon-close" />
@@ -24,9 +24,10 @@ class ExpectJobPanel extends Component {
       <div className="expect-jobs">
         {expectJobs && expectJobs.map(expectJob => <ExpectJobItem {...expectJob} />)}
       </div>
-      <div className="expect-job-panel-add-btn">
-        <i className="icon-add_circle" /> 继续添加求职期望
-      </div>
+      {expectJobs && expectJobs.length < 3 && <div className="expect-job-panel-add-btn" onClick={switchAddExpectJobPanel}>
+        <span><i className="icon-add_circle" /></span>
+        <span>继续添加求职期望</span>
+      </div>}
       <div className="expect-job-panel-status-wrapper">
         <div className="expect-job-panel-status-title">求职状态</div>
         <div className="expect-job-panel-status-value">
@@ -45,6 +46,9 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => ({
   switchExpectJobPanel() {
     dispatch(actionCreators[actionTypes.SWITCH_EXPECT_JOB_PANEL]());
+  },
+  switchAddExpectJobPanel() {
+    dispatch(actionCreators[actionTypes.SWITCH_ADD_EXPECT_JOB_PANEL]());
   },
 });
 

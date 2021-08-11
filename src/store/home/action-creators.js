@@ -30,6 +30,15 @@ const actionCreators = {
       })
     }
   },
+  [actionTypes.SWITCH_ADD_EXPECT_JOB_PANEL]() {
+    return (dispatch, getState) => {
+      const state = getState();
+      dispatch({
+        type: actionTypes.SWITCH_ADD_EXPECT_JOB_PANEL,
+        showAddExpectJobPanel: !state.home.showAddExpectJobPanel
+      })
+    }
+  },
   [actionTypes.CHANGE_TOP_TIP_TAB](topTipTab) {
     return {
       type: actionTypes.CHANGE_TOP_TIP_TAB,

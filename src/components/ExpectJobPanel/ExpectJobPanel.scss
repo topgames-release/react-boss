@@ -54,6 +54,11 @@
     border-radius: 3px;
     text-align: center;
     color: $--color-primary;
+    span {
+      &:first-child {
+        margin-right: 4px;
+      }
+    }
   }
   .expect-job-panel-status-wrapper {
     display: flex;
