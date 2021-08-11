@@ -1,3 +1,4 @@
+@import "../../assets/style/var";
 
 .dialog-panel {
   position: fixed;
@@ -58,7 +59,7 @@
     .confirm {
       flex: 2;
       color: #ffffff;
-      background: #40e0d0;
+      background: $--color-primary;
       border-radius: 6px;
     }
   }
