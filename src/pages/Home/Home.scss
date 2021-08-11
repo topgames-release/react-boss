@@ -5,5 +5,9 @@
   .home-jobs {
     padding-top: 6px;
     margin-top: 80px;
+    .scroll {
+      height: calc(100vh - 128px);
+      overflow: hidden;
+    }
   }
 }

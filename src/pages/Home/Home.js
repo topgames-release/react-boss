@@ -6,6 +6,7 @@ import TopTip from "../../components/TopTip/TopTip";
 import Job from "../../components/Job/Job";
 
 import './Home.scss';
+import Scroll from "../../components/Scroll/Scroll";
 
 class Home extends Component {
   componentDidMount() {
@@ -24,6 +25,14 @@ class Home extends Component {
     }
   }
 
+  pushDown = () => {
+    console.log('pushDown');
+  }
+
+  pullUp = () => {
+    console.log('pullUp');
+  }
+
   render() {
     const { jobs } = this.props;
     if (!jobs) return null;
@@ -31,7 +40,11 @@ class Home extends Component {
       <TopTabBar/>
       <TopTip/>
       <div className='home-jobs'>
-        {jobs.map(job => <Job key={job.id} {...job} />)}
+        <Scroll pushDown={this.pushDown} pullUp={this.pullUp} data={jobs}>
+          <div>
+            {jobs.map(job => <Job key={job.id} {...job} />)}
+          </div>
+        </Scroll>
       </div>
     </div>
   }
