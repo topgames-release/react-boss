@@ -76,7 +76,7 @@ class Home extends Component {
           </div>
         </Scroll>
       </div>
-      {<div className="home-pull-up-loader">
+      {pullUp && <div className="home-pull-up-loader">
         <Loader />
       </div>}
     </div>
