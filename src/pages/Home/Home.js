@@ -4,11 +4,19 @@ import {actionTypes, actionCreators} from '../../store/home'
 import TopTabBar from "../../components/TopTabBar/TopTabBar";
 import TopTip from "../../components/TopTip/TopTip";
 import Job from "../../components/Job/Job";
+import Scroll from "../../components/Scroll/Scroll";
+import Loader from "../../components/Loader/Loader";
 
 import './Home.scss';
-import Scroll from "../../components/Scroll/Scroll";
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pushDown: false,
+      pullUp: false,
+    }
+  }
   componentDidMount() {
     const { getExpectJobs, getJobs } = this.props;
     getExpectJobs();
@@ -25,27 +33,52 @@ class Home extends Component {
     }
   }
 
+  listenScroll = pos => {
+    console.log('listenScroll', pos);
+  }
+
   pushDown = () => {
-    console.log('pushDown');
+    this.setState({
+      pushDown: true,
+    });
+    setTimeout(() => {
+      this.setState({
+        pushDown: false,
+      });
+    }, 2000);
   }
 
   pullUp = () => {
-    console.log('pullUp');
+    this.setState({
+      pullUp: true,
+    });
+    setTimeout(() => {
+      this.setState({
+        pullUp: false,
+      });
+    }, 2000);
   }
 
   render() {
+    const { pushDown, pullUp } = this.state;
     const { jobs } = this.props;
     if (!jobs) return null;
-    return <div className='home'>
+    return <div className={`home ${pullUp ? 'bottom' : ''}`}>
       <TopTabBar/>
       <TopTip/>
-      <div className='home-jobs'>
-        <Scroll pushDown={this.pushDown} pullUp={this.pullUp} data={jobs}>
+      {pushDown && <div className="home-pull-down-loader">
+        <Loader />
+      </div>}
+      <div className={`home-jobs ${pushDown ? 'no-margin-top' : 'margin-top'}`}>
+        <Scroll listenScroll={this.listenScroll} pushDown={this.pushDown} pullUp={this.pullUp} data={jobs}>
           <div>
             {jobs.map(job => <Job key={job.id} {...job} />)}
           </div>
         </Scroll>
       </div>
+      {<div className="home-pull-up-loader">
+        <Loader />
+      </div>}
     </div>
   }
 }

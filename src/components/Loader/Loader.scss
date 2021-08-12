@@ -1,0 +1,97 @@
+@import "../../assets/style/var";
+
+.loader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  -webkit-box-flex: 0;
+  -ms-flex: none;
+  flex: none;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  flex-direction: row;
+  .loader-spiner {
+    display: inline-block;
+    position: relative;
+    height: 20px;
+    width: 40px;
+    vertical-align: middle;
+    & > *:nth-child(1) {
+      left: 0;
+      -webkit-animation: mymove 1.3s infinite ease-in;
+      animation: mymove 1.3s infinite ease-in;
+    }
+    & > :first-child {
+      left: 0;
+      -webkit-animation: mymove 1.3s ease-in infinite;
+      animation: mymove 1.3s ease-in infinite;
+    }
+    & > *:nth-child(2) {
+      left: 12px;
+      -webkit-animation: mymove 1.3s 0.3s infinite ease-in;
+      animation: mymove 1.3s 0.3s infinite ease-in;
+    }
+    &>:nth-child(2) {
+      left: 12px;
+      -webkit-animation: mymove 1.3s ease-in .3s infinite;
+      animation: mymove 1.3s ease-in .3s infinite;
+    }
+    & > *:nth-child(3) {
+      left: 24px;
+      -webkit-animation: mymove 1.3s 0.6s infinite ease-in;
+      animation: mymove 1.3s 0.6s infinite ease-in;
+    }
+    &>:nth-child(3) {
+      left: 24px;
+      -webkit-animation: mymove 1.3s ease-in .6s infinite;
+      animation: mymove 1.3s ease-in .6s infinite;
+    }
+    & > * {
+      position: absolute;
+      top: 5px;
+      height: 10px;
+      width: 10px;
+      border-radius: 50%;
+      background: $--color-primary;
+      opacity: .6;
+      -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
+      transform: translateX(0);
+    }
+    @-webkit-keyframes mymove {
+      0%, 80%, to {
+        opacity: .6;
+        -webkit-transform: scale(.4)
+      }
+      40% {
+        opacity: 1;
+        -webkit-transform: scale(1)
+      }
+    }
+
+    @keyframes mymove {
+      0%, 80%, to {
+        opacity: .6;
+        -webkit-transform: scale(.4);
+        transform: scale(.4)
+      }
+      40% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1)
+      }
+    }
+  }
+}

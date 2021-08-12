@@ -92,7 +92,7 @@ export default class Scroll extends Component {
   }
 
   render() {
-    const {children} = this.props;
-    return <div className='scroll' ref={this.scrollRef}>{children}</div>
+    const {children, className} = this.props;
+    return <div className={`scroll ${className || ''}`} ref={this.scrollRef}>{children}</div>
   }
 }
